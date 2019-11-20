@@ -54,6 +54,13 @@
                 createdAt: new Date()
             };
             console.log('[新增產品]', product);
+            axios.post('/api/product/create', product)
+            .then(function(res){ // success
+                console.log('[Transfer Properly]');
+            })
+            .catch(function(err){ // process fail
+                console.log('[Something Wrong]')
+            });
         });
     </script>
 </body>
