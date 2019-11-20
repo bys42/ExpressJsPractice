@@ -7,6 +7,7 @@ const logger = require('morgan');
 // 取得路由資源
 const indexRouter = require('./routes/index');
 const productRouter = require('./routes/product');
+const apiRouter = require('./routes/api');
 
 // 設定應用程式
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/product', productRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

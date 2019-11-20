@@ -13,7 +13,9 @@ router.post('/logout', function (req, res, next) {
 
 // 新增商品
 router.post('/product/create', function (req, res, next) {
-
+    res.status(200).json ({
+        msg: '[CreateProduct] Operation Complete'
+    });
 });
 
 // 更新商品
