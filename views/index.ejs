@@ -18,6 +18,24 @@
     <div class="container">
       <h1>Products</h1>
       <div class="row">
+          <% products.forEach(product => { %>
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <img src="<%= product.image %>" alt="" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= product.name %>
+                  </h5>
+                  <p>
+                    <span class="badge badge-primary">
+                      <%= product.category%>
+                    </span>
+                  </p>
+                  <p>$ <%= product.price%></p>
+                </div>
+              </div>
+            </div>
+          <%}); %>
       </div>
     </div>
   </section>

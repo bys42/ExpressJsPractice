@@ -6,10 +6,18 @@ const router = express.Router();
 router.get('/', async function (req, res, next) {
   // get doc:home from set:content (in firebase)
   const doc = await db.doc('content/home').get();
-  
+
   res.locals.title = doc.data().title;
   res.locals.subtitle = doc.data().subtitle;
-  
+
+  const productDocs = await db.collection('products').get();
+  const products = [];
+  productDocs.forEach(doc => {
+    const product = doc.data();
+    products.push(product);
+  });
+  res.locals.products = products;
+
   res.render('index'); // use template index.ejs
 });
 
