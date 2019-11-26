@@ -5,6 +5,18 @@ $('#loginForm').submit(function (event) {
     const email = $('#loginEmail').val(),
         password = $('#loginPassword').val();
     console.log('[開始登入]', { email: email, password: password });
+
+    // firebase authentication
+    firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(function (res) {
+            console.log('Login Success', res)
+        })
+        .catch(function (err) {
+            console.log('Login Failed', err)
+            alert(err);
+        });
 });
 
 // 
