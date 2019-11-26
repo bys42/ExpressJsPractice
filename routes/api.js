@@ -29,17 +29,42 @@ router.post('/product/create', function (req, res, next) {
                 msg: 'Create Product Failed, please try again',
                 responce: err
             });
-        })
+        });
 });
 
 // 更新商品
+// http put /api/product/:pid
 router.put('/product/:pid', function (req, res, next) {
-
+    const pid = req.params.pid;
+    const product = req.body;
+    console.log(pid, product)
+    db
+        .collection('products')
+        .doc(pid)
+        .update(product)
+        .then(() => {
+            res.status(200).json({ msg: 'update complete' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ err: err });
+        });
 });
 
 // 刪除商品
 router.delete('/product/:pid', function (req, res, next) {
-
+    const pid = req.params.pid;
+    db
+        .collection('products')
+        .doc(pid)
+        .delete()
+        .then(() => {
+            res.status(200).json({ msg: 'Delete Complete' });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ err: err });
+        });
 });
 
 module.exports = router;

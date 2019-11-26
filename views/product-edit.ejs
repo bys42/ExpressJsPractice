@@ -16,25 +16,35 @@
         <form id="editProductForm" class="container">
             <div class="form-group">
                 <label for="productName">商品名稱</label>
-                <input type="text" id="productName" class="form-control" required>
+                <input value=<%= product.name %> type="text" id="productName" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="productPrice">商品價格</label>
-                <input type="number" id="productPrice" class="form-control" min="1" max="20000" required>
+                <input value=<%= product.price %> type="number" id="productPrice" class="form-control" min="1"
+                    max="20000" required>
             </div>
             <div class="form-group">
                 <label for="productImage">商品圖片</label>
-                <input type="text" id="productImage" class="form-control" value="https://picsum.photos/id/1070/1200/600"
-                    required>
+                <input value=<%= product.image %> type="text" id="productImage" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="productCategory">商品分類</label>
                 <select id="productCategory" class="form-control">
+                    <!-- 
                     <option value="食品">食品</option>
                     <option value="生活用品">生活用品</option>
                     <option value="文具">文具</option>
                     <option value="清潔用品">清潔用品</option>
                     <option value="其他">其他</option>
+                    -->
+                    <% const options = ['食品', '生活用品', '文具', '清潔用品', '其他']; %>
+                    <% options.forEach(option => { %>
+                    <% if (option === product.category){ %>
+                    <option value="<%= option %>" select><%= option %></option>
+                    <%  } else { %>
+                    <option value="<%= option %>"><%= option %></option>
+                    <%  } %>
+                    <% }); %>
                 </select>
             </div>
             <div class="form-group">
@@ -49,18 +59,38 @@
         // 更新商品表單送出時
         $('#editProductForm').submit(function (event) {
             event.preventDefault();
+            const pid = '<%= product.id %>';
             const product = {
                 name: $('#productName').val(),
                 price: parseInt($('#productPrice').val()),
                 image: $('#productImage').val(),
                 category: $('#productCategory').val(),
             }
-            console.log('[更新產品]', product);
+            console.log('[更新產品]', pid, product);
+            axios.put(`/api/product/${pid}`, product) // a 'promise'
+                .then(function (res) {
+                    alert('Update Complete');
+                    window.location = '/'; // back to root page
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    alert('Update Failed, please try again');
+                });
         });
 
         // 刪除商品按鈕按下時
         $('#deleteProductBtn').click(function (event) {
             console.log('[刪除商品]');
+            const pid = '<%= product.id %>';
+            axios.delete(`/api/product/${pid}`)
+                .then(function (res) {
+                    alert('Delete Complete');
+                    window.location = '/'; // back to root page
+                })
+                .catch(function (err) {
+                    alert('Process Failed, please try again');
+                    console.log(err);
+                });
         });
     </script>
 </body>

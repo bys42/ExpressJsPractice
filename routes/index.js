@@ -10,11 +10,16 @@ router.get('/', async function (req, res, next) {
   res.locals.title = doc.data().title;
   res.locals.subtitle = doc.data().subtitle;
 
-  const productDocs = await db.collection('products').get();
+  const productDocs = await db
+    .collection('products')
+    .orderBy('createdAt', 'desc')
+    .get();
+  
   const products = [];
   productDocs.forEach(doc => {
     const product = doc.data();
     products.push(product);
+    product.id = doc.id;
   });
   res.locals.products = products;
 
