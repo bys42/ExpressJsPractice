@@ -11,10 +11,22 @@ $('#loginForm').submit(function (event) {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(function (res) {
-            console.log('Login Success', res)
+            console.log('Login Success', res);
+            res.user.getIdToken()
+                .then(function (idToken) {
+                    console.log('IdToken:', idToken);
+                    axios.post('/api/login', { idToken: idToken })
+                        .then(function (res) {
+                            console.log(res);
+                            window.location.reload();
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
+                })
         })
         .catch(function (err) {
-            console.log('Login Failed', err)
+            console.log('Login Failed', err);
             alert(err);
         });
 });
@@ -30,4 +42,13 @@ $('#signUpForm').submit(function (event) {
 // 登出按鈕點擊時
 $('#logoutBtn').click(function () {
     console.log('[開始登出]');
+    axios.post('/api/logout', {})
+        .then(function (res) {
+            alert('Logout')
+            window.location = '/';
+        })
+        .catch(function (err) {
+            console.log(err);
+            alert('Logout failed')
+        });
 });

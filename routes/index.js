@@ -1,6 +1,9 @@
 const express = require('express');
 const db = require('../db');
+const loginChecker = require('../middleware/login-checker');
 const router = express.Router();
+
+loginChecker(router);
 
 // 首頁路由
 router.get('/', async function (req, res, next) {

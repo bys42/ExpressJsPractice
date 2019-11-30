@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const adminGuard = require('../middleware/admin-guard');
 
 // 產品詳情路由
 router.get('/show/:pid', function (req, res, next) {
     // 渲染product-show.ejs
     res.render('product-show');
 });
+
+adminGuard(router);
 
 // 建立產品路由
 router.get('/create', function (req, res, next) {

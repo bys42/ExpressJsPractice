@@ -1,16 +1,43 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const admin = require('../firebase');
+const adminGuard = require('../middleware/admin-guard');
 
 // 登入
 router.post('/login', function (req, res, next) {
+    const idToken = req.body.idToken;
+    const sessionKey = req.app.locals.sessionKey // express supplied
+    const expiresIn = 12 * 24 * 60 * 60 * 1000; // 1 stands for 0.001s in JS
 
+    admin.auth().createSessionCookie(idToken, { expiresIn })
+        .then(sessionCookie => {
+            console.log(sessionCookie);
+            const options = {
+                maxAge: expiresIn,
+                httpOnly: true
+            };
+            res.cookie(sessionKey, sessionCookie, options);
+            res.status(200).json({ msg: 'Login Complete' });
+        });
 });
 
 // 登出
 router.post('/logout', function (req, res, next) {
-
+    const sessionKey = req.app.locals.sessionKey;
+    const sessionCookie = req.cookies[sessionKey] || '';
+    res.clearCookie(sessionKey);
+    admin.auth().verifySessionCookie(sessionCookie)
+        .then(user => {
+            admin.auth().revokeRefreshTokens(user.sub);
+            res.status(200).json({ msg: 'OK' })
+        })
+        .catch(err => {
+            res.status(200).json({ msg: 'OK' })
+        })
 });
+
+adminGuard(router);
 
 // 新增商品
 router.post('/product/create', function (req, res, next) {

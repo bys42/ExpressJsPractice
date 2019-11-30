@@ -7,18 +7,24 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto">
+            <% if (!auth.isLogin) { %>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#signUpModal">Sign Up</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#loginModal">Login</a>
             </li>
+            <% } %>
+            <% if (auth.isAdmin) { %>
             <li class="nav-item">
                 <a class="nav-link" href="/product/create">Create product</a>
             </li>
+            <% } %>
+            <% if (auth.isLogin) { %>
             <li class="nav-item">
                 <a id="logoutBtn" class="nav-link">Log out</a>
             </li>
+            <% } %>
         </ul>
     </div>
 </nav>

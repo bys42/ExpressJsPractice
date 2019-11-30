@@ -12,6 +12,9 @@ const apiRouter = require('./routes/api');
 // 設定應用程式
 const app = express();
 
+// setting gloabal variable for backend
+app.locals.sessionKey = 'mywebsitekey'
+
 // 定義視圖引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
