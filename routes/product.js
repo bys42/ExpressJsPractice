@@ -20,23 +20,14 @@ router.get('/create', function (req, res, next) {
 // /product/edit/:pid, ":" indicates the following pid is a variable, res.params.pid
 router.get('/edit/:pid', async function (req, res, next) {
     const pid = req.params.pid;
-    // 渲染product-edit.ejs
-    
-    // const doc = db
-    //     .collection('products')
-    //     .doc(pid)
-    //     .get();
-    // doc would be "promise"
-    // one could use then/catch...
-
     const doc = await db
         .collection('products')
         .doc(pid)
         .get();
     const product = doc.data();
     product.id = doc.id;
-    console.log('[product]')
     res.locals.product = product;
+    // 渲染product-edit.ejs
     res.render('product-edit');
 });
 

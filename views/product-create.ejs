@@ -53,14 +53,12 @@
                 category: $('#productCategory').val(),
                 createdAt: new Date()
             };
-            console.log('[新增產品]', product);
             axios.post('/api/product/create', product)
             .then(function(res){ // success
-                console.log('[Transfer Properly]', res);
                 alert(res.data.msg);
             })
             .catch(function(err){ // process fail
-                console.log('[Something Wrong]', err);
+                console.log('[Create Product Failed]', err);
                 alert(err.data.msg);
             });
         });

@@ -15,7 +15,7 @@ router.get('/', async function (req, res, next) {
 
   const productDocs = await db
     .collection('products')
-    .orderBy('createdAt', 'desc')
+    .orderBy('createdAt', 'desc') // order by createAt, descending
     .get();
   
   const products = [];

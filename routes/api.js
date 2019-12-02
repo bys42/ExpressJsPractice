@@ -12,7 +12,6 @@ router.post('/login', function (req, res, next) {
 
     admin.auth().createSessionCookie(idToken, { expiresIn })
         .then(sessionCookie => {
-            console.log(sessionCookie);
             const options = {
                 maxAge: expiresIn,
                 httpOnly: true
@@ -64,7 +63,6 @@ router.post('/product/create', function (req, res, next) {
 router.put('/product/:pid', function (req, res, next) {
     const pid = req.params.pid;
     const product = req.body;
-    console.log(pid, product)
     db
         .collection('products')
         .doc(pid)

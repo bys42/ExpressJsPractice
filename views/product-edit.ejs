@@ -66,21 +66,19 @@
                 image: $('#productImage').val(),
                 category: $('#productCategory').val(),
             }
-            console.log('[更新產品]', pid, product);
             axios.put(`/api/product/${pid}`, product) // a 'promise'
                 .then(function (res) {
                     alert('Update Complete');
                     window.location = '/'; // back to root page
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    console.log('[Edit Product Failed]', err);
                     alert('Update Failed, please try again');
                 });
         });
 
         // 刪除商品按鈕按下時
         $('#deleteProductBtn').click(function (event) {
-            console.log('[刪除商品]');
             const pid = '<%= product.id %>';
             axios.delete(`/api/product/${pid}`)
                 .then(function (res) {
@@ -88,8 +86,8 @@
                     window.location = '/'; // back to root page
                 })
                 .catch(function (err) {
-                    alert('Process Failed, please try again');
-                    console.log(err);
+                    console.log('[Delete Product Failed]', err);
+                    alert('Delete Failed, please try again');
                 });
         });
     </script>
