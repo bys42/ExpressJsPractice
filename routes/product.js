@@ -4,7 +4,14 @@ const db = require('../db');
 const adminGuard = require('../middleware/admin-guard');
 
 // 產品詳情路由
-router.get('/show/:pid', function (req, res, next) {
+router.get('/show/:pid', async function (req, res, next) {
+    const pid = req.params.pid;
+    const doc = await db
+        .collection('products')
+        .doc(pid)
+        .get();
+    const product = doc.data();
+    res.locals.product = product;
     // 渲染product-show.ejs
     res.render('product-show');
 });

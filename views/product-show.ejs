@@ -3,10 +3,37 @@
 
 <head>
     <% include shared/head %>
+    <style type="text/css">
+        #showHeader {
+            background-image: url('<%= product.image %>');
+        }
+    </style>
 </head>
 
 <body>
     <% include shared/navbar %>
+    <header id="showHeader" class="jumbotron header">
+        <div class="container">
+
+            <h1 class="text-capitalize"><%= product.name %></h1>
+
+            <span class="badge badge-primary">
+                <%= product.category%>
+            </span>
+            <hr class="my-4">
+            <p class="lead">
+                <% let desc = product.description.replace(/\n/g, "<br/>") %>
+                <%- desc %>
+            </p>
+            <hr class="my-4">
+            <h3>售價: $<%= product.price %></h3>
+            <hr class="my-4">
+            <p>
+                更新日期：<%= product.latestUpdate %><br>
+                上架日期：<%= product.createdAt %>
+            </p>
+        </div>
+    </header>
     <section class="py-3">
         <div class="container">
 

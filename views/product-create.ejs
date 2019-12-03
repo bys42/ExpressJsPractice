@@ -38,6 +38,10 @@
                 </select>
             </div>
             <div class="form-group">
+                    <label for="productCategory">商品描述</label>
+                    <textarea id="productDescription" rows="5" class="form-control" placeholder="..."></textarea>
+                </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> 新增商品</button>
             </div>
         </form>
@@ -46,21 +50,25 @@
     <script>
         $('#createProductForm').submit(function (event) {
             event.preventDefault();
+            const presentTime = new Date();
             const product = {
                 name: $('#productName').val(),
                 price: parseInt($('#productPrice').val()),
                 image: $('#productImage').val(),
                 category: $('#productCategory').val(),
-                createdAt: new Date()
+                description: $('#productDescription').val(),
+                createdAt: presentTime,
+                latestUpdate: presentTime
             };
             axios.post('/api/product/create', product)
-            .then(function(res){ // success
-                alert(res.data.msg);
-            })
-            .catch(function(err){ // process fail
-                console.log('[Create Product Failed]', err);
-                alert(err.data.msg);
-            });
+                .then(function (res) { // success
+                    alert(res.data.msg);
+                    window.location = '/';
+                })
+                .catch(function (err) { // process fail
+                    console.log('[Create Product Failed]', err);
+                    alert(err.data.msg);
+                });
         });
     </script>
 </body>
