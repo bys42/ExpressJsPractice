@@ -69,7 +69,7 @@
                 price: parseInt($('#productPrice').val()),
                 image: $('#productImage').val(),
                 category: $('#productCategory').val(),
-                description: $('#productDescription').val().replace(/\n/g, "<br/>"),
+                description: $('#productDescription').val(),
                 latestUpdate: new Date()
             }
             axios.put(`/api/product/${pid}`, product) // a 'promise'

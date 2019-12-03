@@ -21,10 +21,7 @@
                 <%= product.category%>
             </span>
             <hr class="my-4">
-            <p class="lead">
-                <% let desc = product.description.replace(/\n/g, "<br/>") %>
-                <%- desc %>
-            </p>
+            <p style="white-space: pre;"><%- product.description %></p>
             <hr class="my-4">
             <h3>售價: $<%= product.price %></h3>
             <hr class="my-4">
