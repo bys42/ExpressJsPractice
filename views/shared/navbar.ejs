@@ -8,10 +8,9 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto">
             <% if (!auth.isLogin) { %>
-            <!-- Todo: sign up -->
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#signUpModal">Sign Up</a>
-            </li> -->
+            </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" href="#loginModal">Login</a>
             </li>
@@ -51,6 +50,11 @@
                     <label for="signUpPassword">Password</label>
                     <input type="password" id="signUpPassword" class="form-control"
                         placeholder="Enter your password here..." minlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label for="comfirmPassword">Confirm Password</label>
+                    <input type="password" id="comfirmPassword" class="form-control"
+                        placeholder="Confirm your password here..." minlength="6" required>
                 </div>
             </div>
             <div class="modal-footer">
