@@ -14,14 +14,12 @@
     <% include shared/navbar %>
     <header id="showHeader" class="jumbotron header">
         <div class="container">
-
             <h1 class="text-capitalize"><%= product.name %></h1>
-
             <span class="badge badge-primary">
                 <%= product.category%>
             </span>
             <hr class="my-4">
-            <p style="white-space: pre;"><%- product.description %></p>
+            <p style="white-space: pre-wrap;"><%- product.description %></p>
             <hr class="my-4">
             <h3>售價: $<%= product.price %></h3>
             <hr class="my-4">
@@ -33,7 +31,9 @@
     </header>
     <section class="py-3">
         <div class="container">
-
+            <% if (auth.isAdmin) { %>
+            <a href="/product/edit/<%= product.id%>" class="btn btn-warning btn-block"><b>Edit Product</b></a>
+            <% } %>
         </div>
     </section>
     <% include shared/scripts %>

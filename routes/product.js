@@ -11,6 +11,7 @@ router.get('/show/:pid', async function (req, res, next) {
         .doc(pid)
         .get();
     const product = doc.data();
+    product.id = doc.id;
     res.locals.product = product;
     // 渲染product-show.ejs
     res.render('product-show');
