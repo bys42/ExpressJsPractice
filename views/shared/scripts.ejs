@@ -28,6 +28,21 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
+    
+    document.body.classList.add("dark-ble");
+    $(".navbar").addClass("dark-ble");
+    $(".navbar-brand").addClass("dark-ble");
+    $(".nav-link").addClass("dark-ble");
+
+    darkModeSwitch.addEventListener('change', () => {
+        if (darkModeSwitch.checked) {
+            $(".dark-ble").addClass("darkMode");
+        } else {
+            $(".dark-ble").removeClass("darkMode");
+        }
+    });
 </script>
 
 <script src="/javascripts/main.js"></script>

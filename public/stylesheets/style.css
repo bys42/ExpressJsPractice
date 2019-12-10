@@ -44,3 +44,20 @@ body {
 #editHeader {
     background-image: url('https://picsum.photos/id/1042/1600/800');
 }
+
+.darkMode {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+}
+
+.jumbotron {
+    margin: 0;
+}
+
+.card {
+    color: black;
+}
+
+.modal-dialog {
+    color: black;
+}
