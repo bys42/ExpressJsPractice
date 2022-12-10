@@ -68,3 +68,26 @@ $('#logoutBtn').click(function () {
             console.log(err);
         });
 });
+
+
+const darkModeSwitch = document.getElementById('darkModeSwitch');
+    
+document.body.classList.add("dark-ble");
+$(".navbar").addClass("dark-ble");
+$(".navbar-brand").addClass("dark-ble");
+$(".nav-link").addClass("dark-ble");
+
+if (sessionStorage.getItem("darkmode")) {
+    $(".dark-ble").addClass("darkMode");
+    darkModeSwitch.setAttribute('checked','');
+}
+
+darkModeSwitch.addEventListener('change', () => {
+    if (darkModeSwitch.checked) {
+        $(".dark-ble").addClass("darkMode");
+        sessionStorage.setItem("darkmode", 'enable')
+    } else {
+        $(".dark-ble").removeClass("darkMode");
+        sessionStorage.removeItem("darkmode");
+    }
+});

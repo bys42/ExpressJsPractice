@@ -11,45 +11,5 @@
 <!-- axios.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
-
-<script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyChWph0MBLgpbsC_BzErVAtLy1pIhHJ4QE",
-        authDomain: "helloexpressjs.firebaseapp.com",
-        databaseURL: "https://helloexpressjs.firebaseio.com",
-        projectId: "helloexpressjs",
-        storageBucket: "helloexpressjs.appspot.com",
-        messagingSenderId: "744698344557",
-        appId: "1:744698344557:web:149fb4e888279f593a3b64"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    const darkModeSwitch = document.getElementById('darkModeSwitch');
-    
-    document.body.classList.add("dark-ble");
-    $(".navbar").addClass("dark-ble");
-    $(".navbar-brand").addClass("dark-ble");
-    $(".nav-link").addClass("dark-ble");
-
-    if (sessionStorage.getItem("darkmode")) {
-        $(".dark-ble").addClass("darkMode");
-        darkModeSwitch.setAttribute('checked','');
-    }
-    
-    darkModeSwitch.addEventListener('change', () => {
-        if (darkModeSwitch.checked) {
-            $(".dark-ble").addClass("darkMode");
-            sessionStorage.setItem("darkmode", 'enable')
-        } else {
-            $(".dark-ble").removeClass("darkMode");
-            sessionStorage.removeItem("darkmode");
-        }
-    });
-</script>
-
+<script type="module" src="/javascripts/firebase.js"></script>
 <script src="/javascripts/main.js"></script>
