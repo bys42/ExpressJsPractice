@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <% include shared/head %>
+    <%- include("shared/head")%>
     <style type="text/css">
         #showHeader {
             background-image: url('<%= product.image %>');
@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <% include shared/navbar %>
+    <%- include("shared/navbar")%>
     <header id="showHeader" class="jumbotron header">
         <div class="container">
             <h1 class="text-capitalize"><%= product.name %></h1>
@@ -36,7 +36,7 @@
             <% } %>
         </div>
     </section>
-    <% include shared/scripts %>
+    <%- include("shared/scripts")%>
 </body>
 
 </html>

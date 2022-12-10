@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <% include shared/head %>
+    <%- include("shared/head")%>
 </head>
 
 <body>
-    <% include shared/navbar %>
+    <%- include("shared/navbar")%>
     <header id="createHeader" class="jumbotron header">
         <div class="container">
             <h1>Create product</h1>
@@ -46,7 +46,7 @@
             </div>
         </form>
     </section>
-    <% include shared/scripts %>
+    <%- include("shared/scripts")%>
     <script>
         $('#createProductForm').submit(function (event) {
             event.preventDefault();
